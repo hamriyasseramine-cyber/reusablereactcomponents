@@ -125,3 +125,9 @@
 .site-header-theme-toggle-button.is-dark .site-header-theme-toggle-knob {
   transform: translateX(18px);
 }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* garde le reste de tes propriétés existantes (background, padding, display, etc.) */
+}

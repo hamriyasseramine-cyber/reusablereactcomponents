@@ -41,7 +41,7 @@ function Navbar() {
         </div>
 
         <a
-          href="https://github.com/your-username"
+          href="https://github.com/hamriyasseramine-cyber"
           target="_blank"
           rel="noopener noreferrer"
           className="site-header-github-link"
@@ -53,7 +53,7 @@ function Navbar() {
         </a>
 
         <a
-          href="https://linkedin.com/in/your-username"
+          href="https://linkedin.com/in/yasser-amine-hamri/"
           target="_blank"
           rel="noopener noreferrer"
           className="site-header-linkedin-link"
