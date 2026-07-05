@@ -1,6 +1,6 @@
 import toc from "./tocData.js";
 
-export default function Tableofcontent({ activeId, activeChildId, onSelectChild }) {
+export default function TableOfContents({ activeId, activeChildId, onSelectChild }) {
   const activeLabel = toc.find((item) => item.id === activeId);
   const children = activeLabel?.children || [];
 
@@ -51,7 +51,15 @@ export default function Tableofcontent({ activeId, activeChildId, onSelectChild 
           return (
             <div
               key={child.id}
-              onClick={() => onSelectChild(child.id)}
+              onClick={() => {
+                onSelectChild(child.id);
+                const el = document.getElementById(child.id);
+                if (el) {
+                  const offset = 90; // adjust this value to taste
+                  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                  window.scrollTo({ top, behavior: "smooth" });
+                }
+              }}
               style={{
                 position: "relative",
                 padding: "6px 16px 6px 32px",

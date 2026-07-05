@@ -1,14 +1,21 @@
 import { useState, useRef, useEffect } from "react";
-import toc from "./tocData.js";
 
-export default function Sidebar({ activeId, onSelect }) {
+const items = [
+  { id: "explore", label: "Explore" },
+  { id: "Color-Palette", label: "Color Palette" },
+  { id: "combos", label: "Combos" },
+  { id: "trending", label: "Trending" },
+  { id: "favorites", label: "Favorites" },
+];
+
+export default function ColorsCombosSidebar({ activeId, onSelect }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const itemRefs = useRef([]);
 
   const [activeRect, setActiveRect] = useState({ top: 0, height: 0 });
   const [hoverRect, setHoverRect] = useState({ top: 0, height: 0 });
 
-  const activeIndex = toc.findIndex((item) => item.id === activeId);
+  const activeIndex = items.findIndex((item) => item.id === activeId);
 
   useEffect(() => {
     const el = itemRefs.current[activeIndex];
@@ -27,7 +34,7 @@ export default function Sidebar({ activeId, onSelect }) {
       style={{
         background: "#0a0a0a",
         padding: "24px 16px",
-        width: "260px",
+        width: "220px",
         fontFamily: "system-ui, sans-serif",
       }}
     >
@@ -50,14 +57,17 @@ export default function Sidebar({ activeId, onSelect }) {
           stroke="currentColor"
           strokeWidth="2"
         >
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          <circle cx="13.5" cy="6.5" r="0.5" />
+          <circle cx="17.5" cy="10.5" r="0.5" />
+          <circle cx="8.5" cy="7.5" r="0.5" />
+          <circle cx="6.5" cy="12.5" r="0.5" />
+          <path d="M12 2a10 10 0 1 0 0 20 1.5 1.5 0 0 0 1.06-2.56 1.5 1.5 0 0 1 1.06-2.56H17a5 5 0 0 0 5-5c0-5.5-4.78-10-10-10z" />
         </svg>
-        <span>Guide</span>
+        <span>Colors Combos</span>
       </div>
 
       <div style={{ position: "relative" }}>
-        {/* active indicator (white, fixed on current label) */}
+        {/* active indicator (white, fixed on current item) */}
         <div
           style={{
             position: "absolute",
@@ -85,7 +95,7 @@ export default function Sidebar({ activeId, onSelect }) {
           }}
         />
 
-        {toc.map((item, i) => {
+        {items.map((item, i) => {
           const isActive = item.id === activeId;
           return (
             <div
