@@ -10,14 +10,15 @@ export default function Jslogo() {
 
 const styles = {
   wrapper: {
-    position: "fixed",
+    position: "absolute",
     top: "auto",
     bottom: "40px",
     left: "auto",
-    right: "-200px",
+    right: "-100px",
     width: "900px",
     height: "500px",
     pointerEvents: "none",
+    zIndex: 0,
     background:
       "radial-gradient(circle, rgba(240,219,79,0.10) 0%, rgba(240,219,79,0.03) 40%, transparent 70%)",
   },

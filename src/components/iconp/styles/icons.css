@@ -1,0 +1,524 @@
+/* src/styles/icons.css
+   Palette stricte : noir / blanc / gris. Aucune autre couleur. */
+
+:root {
+  --ic-bg: #0a0a0a;
+  --ic-bg-panel: #111111;
+  --ic-bg-card: #161616;
+  --ic-bg-card-hover: #1e1e1e;
+  --ic-bg-card-active: #262626;
+  --ic-border: #2a2a2a;
+  --ic-border-light: #333333;
+  --ic-text: #ffffff;
+  --ic-text-dim: #9a9a9a;
+  --ic-text-faint: #6b6b6b;
+  --ic-white: #ffffff;
+  --ic-black: #000000;
+  --ic-radius: 10px;
+  --ic-radius-sm: 6px;
+  --ic-font: -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  --ic-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.icon-lib {
+  display: grid;
+  grid-template-columns: 220px 1fr 320px;
+  height: 100vh;
+  background: var(--ic-bg);
+  color: var(--ic-text);
+  font-family: var(--ic-font);
+  font-size: 13px;
+}
+
+/* ---------- Sidebar ---------- */
+.ic-sidebar {
+  border-right: 1px solid var(--ic-border);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+}
+
+.ic-sidebar-nav,
+.ic-sidebar-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ic-nav-item,
+.ic-cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--ic-radius-sm);
+  color: var(--ic-text-dim);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+}
+
+.ic-nav-item:hover,
+.ic-cat-item:hover {
+  background: var(--ic-bg-card-hover);
+  color: var(--ic-text);
+}
+
+.ic-nav-item.active,
+.ic-cat-item.active {
+  background: var(--ic-bg-card-active);
+  color: var(--ic-white);
+}
+
+.ic-nav-item svg,
+.ic-cat-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ic-cat-count {
+  color: var(--ic-text-faint);
+  font-size: 12px;
+}
+
+.ic-section-label {
+  color: var(--ic-text-faint);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  margin-bottom: 4px;
+}
+
+.ic-upload-box {
+  margin-top: auto;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius);
+  padding: 14px;
+}
+
+.ic-upload-box p {
+  color: var(--ic-text-dim);
+  font-size: 12px;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.ic-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+  padding: 8px;
+  border-radius: var(--ic-radius-sm);
+  background: var(--ic-bg-card-active);
+  color: var(--ic-white);
+  border: 1px solid var(--ic-border-light);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.ic-upload-btn:hover {
+  background: #2f2f2f;
+}
+
+/* ---------- Main / Toolbar ---------- */
+.ic-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ic-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ic-border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ic-toolbar-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.ic-toolbar-title h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ic-toolbar-title span {
+  color: var(--ic-text-faint);
+  font-size: 12px;
+}
+
+.ic-toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ic-dropdown,
+.ic-search-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ic-bg-card);
+  border: 1px solid var(--ic-border);
+  color: var(--ic-text-dim);
+  border-radius: var(--ic-radius-sm);
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ic-dropdown:hover {
+  border-color: var(--ic-border-light);
+  color: var(--ic-text);
+}
+
+.ic-dropdown-wrap {
+  position: relative;
+}
+
+.ic-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 140px;
+  background: var(--ic-bg-card);
+  border: 1px solid var(--ic-border-light);
+  border-radius: var(--ic-radius-sm);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.ic-dropdown-option {
+  background: transparent;
+  border: none;
+  color: var(--ic-text-dim);
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: var(--ic-radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.ic-dropdown-option:hover {
+  background: var(--ic-bg-card-hover);
+  color: var(--ic-text);
+}
+
+.ic-dropdown-option.active {
+  background: var(--ic-white);
+  color: var(--ic-black);
+  font-weight: 600;
+}
+
+.ic-view-toggle {
+  display: flex;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius-sm);
+  overflow: hidden;
+}
+
+.ic-view-toggle button {
+  background: var(--ic-bg-card);
+  border: none;
+  color: var(--ic-text-dim);
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.ic-view-toggle button.active {
+  background: var(--ic-bg-card-active);
+  color: var(--ic-white);
+}
+
+/* ---------- Grid ---------- */
+.ic-grid-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.ic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px;
+}
+
+.ic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 6px;
+  border-radius: var(--ic-radius);
+  border: 1px solid transparent;
+  background: var(--ic-bg-card);
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.ic-card:hover {
+  background: var(--ic-bg-card-hover);
+  border-color: var(--ic-border-light);
+}
+
+.ic-card.selected {
+  background: var(--ic-bg-card-active);
+  border-color: var(--ic-white);
+}
+
+.ic-card svg {
+  width: 20px;
+  height: 20px;
+  color: var(--ic-white);
+  stroke-width: 1.75;
+}
+
+.ic-card-label {
+  font-size: 11px;
+  color: var(--ic-text-dim);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* ---------- Pagination ---------- */
+.ic-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 14px 0 4px;
+}
+
+.ic-pagination button {
+  min-width: 28px;
+  height: 28px;
+  border-radius: var(--ic-radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ic-text-dim);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.ic-pagination button:hover {
+  background: var(--ic-bg-card-hover);
+  color: var(--ic-text);
+}
+
+.ic-pagination button.active {
+  background: var(--ic-white);
+  color: var(--ic-black);
+  font-weight: 600;
+}
+
+.ic-pagination button:disabled {
+  color: var(--ic-text-faint);
+  cursor: default;
+}
+
+/* ---------- Detail panel ---------- */
+.ic-detail {
+  border-left: 1px solid var(--ic-border);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ic-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ic-border);
+}
+
+.ic-detail-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ic-detail-header-actions {
+  display: flex;
+  gap: 10px;
+  color: var(--ic-text-dim);
+}
+
+.ic-detail-header-actions svg {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.ic-detail-preview {
+  margin: 20px;
+  aspect-ratio: 1;
+  border-radius: var(--ic-radius);
+  background:
+    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
+  background-color: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ic-detail-preview svg {
+  width: 64px;
+  height: 64px;
+  color: var(--ic-white);
+  stroke-width: 1.5;
+}
+
+.ic-detail-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 16px;
+  flex-wrap: wrap;
+}
+
+.ic-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--ic-radius-sm);
+  border: 1px solid var(--ic-border-light);
+  background: var(--ic-white);
+}
+
+.ic-detail-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--ic-border);
+}
+
+.ic-detail-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--ic-text-faint);
+  padding: 8px 4px;
+  margin-right: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.ic-detail-tabs button.active {
+  color: var(--ic-white);
+  border-bottom-color: var(--ic-white);
+}
+
+.ic-detail-actions {
+  margin-top: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: var(--ic-radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid var(--ic-border-light);
+}
+
+.ic-btn-primary {
+  background: var(--ic-white);
+  color: var(--ic-black);
+  border: none;
+  font-weight: 600;
+}
+
+.ic-btn-primary:hover {
+  background: #e6e6e6;
+}
+
+.ic-btn-secondary {
+  background: transparent;
+  color: var(--ic-text-dim);
+}
+
+.ic-btn-secondary:hover {
+  background: var(--ic-bg-card-hover);
+  color: var(--ic-text);
+}
+
+.ic-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Code block ---------- */
+.ic-codeblock {
+  margin: 0 20px 16px;
+  background: var(--ic-bg-panel);
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius-sm);
+  padding: 12px;
+  overflow: auto;
+  max-height: 260px;
+}
+
+.ic-codeblock pre {
+  margin: 0;
+  font-family: var(--ic-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ic-text-dim);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.ic-codeblock .tag {
+  color: var(--ic-white);
+}
+.ic-codeblock .attr {
+  color: var(--ic-text-dim);
+}
+.ic-codeblock .val {
+  color: var(--ic-text-faint);
+}

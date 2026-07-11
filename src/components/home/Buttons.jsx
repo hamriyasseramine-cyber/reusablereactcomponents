@@ -5,12 +5,16 @@ export default function ButtonGroup() {
 
   return (
     <div style={styles.wrapper}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+      `}</style>
+
       <button
         style={styles.exploreButton}
         onClick={() => navigate("/components")}
       >
         Explore Components
-        <span>→</span>
+        <span style={{ marginLeft: "4px" }}>→</span>
       </button>
 
       <button
@@ -25,39 +29,41 @@ export default function ButtonGroup() {
 
 const styles = {
   wrapper: {
-    position: "fixed",
-    bottom: "340px",
-    left: "50%",
-    right: "auto",
-    transform: "translateX(-50%)",
     display: "flex",
-    gap: "12px",
+    justifyContent: "center",
+    gap: "14px",
   },
   exploreButton: {
     display: "inline-flex",
     alignItems: "center",
     gap: "8px",
-    background: "#fff",
-    color: "#000",
-    border: "1px solid #323232",
-    borderRadius: "10px",
-    padding: "10px 20px",
-    fontSize: "14px",
-    fontWeight: 500,
-    fontFamily: "sans-serif",
+    background: "#ffffff",
+    color: "#0a0a0a",
+    border: "none",
+    borderRadius: "999px",
+    padding: "13px 28px",
+    fontSize: "15px",
+    fontWeight: 700,
+    fontFamily: "'Space Grotesk', sans-serif",
+    letterSpacing: "0.01em",
     cursor: "pointer",
     whiteSpace: "nowrap",
+    boxShadow: "0 2px 14px rgba(255,255,255,0.15)",
+    transition: "transform 0.15s ease, box-shadow 0.15s ease",
   },
   browseButton: {
-    background: "transparent",
-    color: "#fff",
-    border: "1px solid #555",
-    borderRadius: "10px",
-    padding: "10px 20px",
-    fontSize: "14px",
-    fontWeight: 500,
-    fontFamily: "sans-serif",
+    background: "rgba(255,255,255,0.04)",
+    color: "#f2f1ec",
+    border: "1px solid rgba(255,255,255,0.18)",
+    borderRadius: "999px",
+    padding: "13px 28px",
+    fontSize: "15px",
+    fontWeight: 700,
+    fontFamily: "'Space Grotesk', sans-serif",
+    letterSpacing: "0.01em",
     cursor: "pointer",
     whiteSpace: "nowrap",
+    backdropFilter: "blur(6px)",
+    transition: "transform 0.15s ease, border-color 0.15s ease",
   },
 };

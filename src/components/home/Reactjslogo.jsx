@@ -10,7 +10,7 @@ export default function JSLogo() {
 
 const styles = {
   wrapper: {
-    position: "fixed",
+    position: "absolute",
     top: "auto",
     bottom: "190px",
     left: "-210px",
@@ -18,6 +18,7 @@ const styles = {
     width: "900px",
     height: "500px",
     pointerEvents: "none",
+    zIndex: 0,
     background:
       "radial-gradient(circle, rgba(97,218,251,0.18) 0%, rgba(97,218,251,0.06) 40%, transparent 70%)",
   },

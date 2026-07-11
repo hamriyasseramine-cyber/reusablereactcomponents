@@ -1,4 +1,4 @@
-export default function KnowledgeQuote() {
+export default function texte() {
   return (
     <div style={styles.wrapper}>
       <style>{`
@@ -19,13 +19,12 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "150px",
   },
   quote: {
     fontFamily: "'Fraunces', serif",
     fontWeight: 500,
     fontSize: "clamp(26px, 4vw, 42px)",
-    lineHeight: 1.,
+    lineHeight: 1.15,
     letterSpacing: "-0.01em",
     color: "#ffffff",
     textAlign: "center",

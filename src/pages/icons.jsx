@@ -1,10 +1,12 @@
-function icon() {
-  return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the home page of our application.</p>
-    </div>
-  );
-}
+// src/pages/Icons.jsx
+// Nouvelle arch : tout vit dans src/components/iconp/
+// (IconLibraryPage, Sidebar, Toolbar, IconGrid, IconDetailPanel à plat,
+//  + sous-dossiers common/, data/, styles/)
 
-export default icon; 
+import IconLibraryPage from "../components/iconp/IconLibraryPage";
+
+// Point d'entrée à importer dans ton routeur, ex:
+// <Route path="/icons" element={<Icons />} />
+export default function Icons() {
+  return <IconLibraryPage />;
+}
