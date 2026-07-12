@@ -47,7 +47,7 @@ export default function Sidebar({ activeCategory, onCategoryChange }) {
       <div className="ic-upload-box">
         <p>Add your own icons. Upload SVGs and build your custom library.</p>
         <button type="button" className="ic-upload-btn">
-          <Upload size={14} /> Upload icon
+          <Upload size={14} /> Upload
         </button>
       </div>
     </aside>
