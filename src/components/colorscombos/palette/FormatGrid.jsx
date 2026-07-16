@@ -2,7 +2,14 @@ import FormatCard from "./FormatCard.jsx";
 
 export default function FormatGrid({ hex, rgb, hsl, hsb }) {
   return (
-    <div style={{ display: "flex", alignItems: "flex-start", gap: "14px", marginTop: "20px" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: "14px",
+        marginTop: "20px",
+      }}
+    >
       <div
         style={{
           width: "56px",
@@ -10,7 +17,8 @@ export default function FormatGrid({ hex, rgb, hsl, hsb }) {
           borderRadius: "12px",
           background: hex,
           flexShrink: 0,
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.4)",
+          boxShadow:
+            "inset 0 0 0 1px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.4)",
         }}
       />
       <div

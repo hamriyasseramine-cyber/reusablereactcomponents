@@ -42,7 +42,12 @@ export default function PaletteCard({ palette }) {
         <div style={{ display: "flex", gap: "10px" }}>
           <button
             onClick={toggleFavorite}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
             aria-label="Toggle favorite"
           >
             <Heart
@@ -53,7 +58,12 @@ export default function PaletteCard({ palette }) {
           </button>
           <button
             onClick={handleCopy}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
             aria-label="Copy palette"
           >
             <Copy size={16} color="#9ca3af" />

@@ -13,7 +13,14 @@ export default function CurrentColorPanel({ hex, hue, onPickShade }) {
         padding: "18px",
       }}
     >
-      <h3 style={{ color: "#ffffff", fontSize: "14px", margin: 0, marginBottom: "14px" }}>
+      <h3
+        style={{
+          color: "#ffffff",
+          fontSize: "14px",
+          margin: 0,
+          marginBottom: "14px",
+        }}
+      >
         Current Color
       </h3>
 
@@ -36,7 +43,10 @@ export default function CurrentColorPanel({ hex, hue, onPickShade }) {
               height: "38px",
               borderRadius: "8px",
               background: shadeFromHue(hue, lightness),
-              border: i === 0 ? "2px solid #ffffff" : "1px solid rgba(255,255,255,0.1)",
+              border:
+                i === 0
+                  ? "2px solid #ffffff"
+                  : "1px solid rgba(255,255,255,0.1)",
               cursor: "pointer",
               padding: 0,
             }}

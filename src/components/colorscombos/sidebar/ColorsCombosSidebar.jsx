@@ -1,21 +1,25 @@
 import { useState, useRef, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 const items = [
-  { id: "explore", label: "Explore" },
-  { id: "Color-Palette", label: "Color Palette" },
-  { id: "combos", label: "Combos" },
-  { id: "trending", label: "Trending" },
-  { id: "favorites", label: "Favorites" },
+  { path: "explore", label: "Explore" },
+  { path: "palette", label: "Color Palette" },
+  { path: "combos", label: "Combos" },
+  { path: "trending", label: "Trending" },
+  { path: "favorites", label: "Favorites" },
 ];
 
-export default function ColorsCombosSidebar({ activeId, onSelect }) {
+export default function ColorsCombosSidebar() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const itemRefs = useRef([]);
+  const location = useLocation();
 
   const [activeRect, setActiveRect] = useState({ top: 0, height: 0 });
   const [hoverRect, setHoverRect] = useState({ top: 0, height: 0 });
 
-  const activeIndex = items.findIndex((item) => item.id === activeId);
+  const activeIndex = items.findIndex((item) =>
+    location.pathname.endsWith(`/${item.path}`)
+  );
 
   useEffect(() => {
     const el = itemRefs.current[activeIndex];
@@ -96,25 +100,27 @@ export default function ColorsCombosSidebar({ activeId, onSelect }) {
         />
 
         {items.map((item, i) => {
-          const isActive = item.id === activeId;
+          const isActive = i === activeIndex;
           return (
-            <div
-              key={item.id}
+            <NavLink
+              key={item.path}
+              to={item.path}
               ref={(el) => (itemRefs.current[i] = el)}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => onSelect(item.id)}
               style={{
+                display: "block",
                 padding: "10px 20px",
                 fontSize: "14px",
                 fontWeight: 600,
                 color: isActive ? "#ffffff" : "#9ca3af",
                 cursor: "pointer",
                 userSelect: "none",
+                textDecoration: "none",
               }}
             >
               {item.label}
-            </div>
+            </NavLink>
           );
         })}
       </div>

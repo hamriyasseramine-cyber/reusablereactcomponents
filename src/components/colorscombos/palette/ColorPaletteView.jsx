@@ -17,7 +17,11 @@ export default function ColorPaletteView() {
   const rgb = hsvToRgb(hue, saturation, value);
   const hex = rgbToHex(rgb);
   const hsl = hsvToHsl(hue, saturation, value);
-  const hsb = { h: Math.round(hue), s: Math.round(saturation), v: Math.round(value) };
+  const hsb = {
+    h: Math.round(hue),
+    s: Math.round(saturation),
+    v: Math.round(value),
+  };
 
   const commitToHistory = () => {
     setHistory((prev) => {
@@ -27,11 +31,20 @@ export default function ColorPaletteView() {
   };
 
   return (
-    <div style={{ display: "flex", gap: "24px", color: "#e5e7eb", fontFamily: "system-ui, sans-serif" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "24px",
+        color: "#e5e7eb",
+        fontFamily: "system-ui, sans-serif",
+      }}
+    >
       {/* main panel */}
       <div style={{ flex: 1, maxWidth: "700px" }}>
         <div>
-          <h1 style={{ color: "#ffffff", fontSize: "28px", margin: 0 }}>Color Palette</h1>
+          <h1 style={{ color: "#ffffff", fontSize: "28px", margin: 0 }}>
+            Color Palette
+          </h1>
           <p style={{ color: "#9ca3af", fontSize: "14px", marginTop: "6px" }}>
             Move your cursor over the canvas to pick a color.
           </p>
@@ -60,18 +73,33 @@ export default function ColorPaletteView() {
       </div>
 
       {/* right panel */}
-      <div style={{ width: "280px", display: "flex", flexDirection: "column", gap: "20px", flexShrink: 0 }}>
+      <div
+        style={{
+          width: "280px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          flexShrink: 0,
+        }}
+      >
         <CurrentColorPanel
           hex={hex}
           hue={hue}
           onPickShade={(shadeColor) => {
-            setHistory((prev) => [shadeColor, ...prev.filter((c) => c !== shadeColor)].slice(0, MAX_HISTORY));
+            setHistory((prev) =>
+              [shadeColor, ...prev.filter((c) => c !== shadeColor)].slice(
+                0,
+                MAX_HISTORY,
+              ),
+            );
           }}
         />
         <ColorHistoryPanel
           history={history}
           onClear={() => setHistory([])}
-          onPick={(color) => setHistory((prev) => [color, ...prev.filter((c) => c !== color)])}
+          onPick={(color) =>
+            setHistory((prev) => [color, ...prev.filter((c) => c !== color)])
+          }
         />
       </div>
     </div>
