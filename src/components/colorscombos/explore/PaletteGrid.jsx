@@ -1,6 +1,11 @@
 import PaletteCard from "./PaletteCard.jsx";
 
-export default function PaletteGrid({ palettes }) {
+export default function PaletteGrid({
+  palettes,
+  compareMode,
+  compareSelection = [],
+  onToggleCompare,
+}) {
   return (
     <div
       style={{
@@ -10,8 +15,15 @@ export default function PaletteGrid({ palettes }) {
         marginTop: "24px",
       }}
     >
-      {palettes.map((palette) => (
-        <PaletteCard key={palette.id} palette={palette} />
+      {palettes.map((palette, i) => (
+        <PaletteCard
+          key={palette.id}
+          palette={palette}
+          index={i}
+          compareMode={compareMode}
+          isSelected={compareSelection.some((p) => p.id === palette.id)}
+          onToggleCompare={onToggleCompare}
+        />
       ))}
     </div>
   );

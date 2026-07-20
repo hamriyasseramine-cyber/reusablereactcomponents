@@ -10,7 +10,11 @@ export default function ColorSwatchStrip({ colors }) {
       }}
     >
       {colors.map((color, i) => (
-        <div key={i} style={{ flex: 1, background: color }} />
+        <div
+          key={i}
+          className="swatch-el"
+          style={{ flex: 1, background: color }}
+        />
       ))}
     </div>
   );

@@ -6,7 +6,7 @@ export default function ButtonGroup() {
   return (
     <div style={styles.wrapper}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Monotype+Corsiva&family=Segoe+Script&family=Cursive&display=swap');
       `}</style>
 
       <button
@@ -44,7 +44,7 @@ const styles = {
     padding: "13px 28px",
     fontSize: "15px",
     fontWeight: 700,
-    fontFamily: "'Space Grotesk', sans-serif",
+    fontFamily: "'Monotype Corsiva', 'Segoe Script', cursive",
     letterSpacing: "0.01em",
     cursor: "pointer",
     whiteSpace: "nowrap",
@@ -59,7 +59,7 @@ const styles = {
     padding: "13px 28px",
     fontSize: "15px",
     fontWeight: 700,
-    fontFamily: "'Space Grotesk', sans-serif",
+    fontFamily: "'Monotype Corsiva', 'Segoe Script', cursive",
     letterSpacing: "0.01em",
     cursor: "pointer",
     whiteSpace: "nowrap",
