@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Heart, Copy } from "lucide-react";
+import { useFavorites } from "../favorites/FavoritesContext.jsx";
 
 export default function PaletteListRow({ palette }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(palette.id);
   const [hovered, setHovered] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(palette.colors.join(", "));
   };
 
-  const toggleFavorite = () => {
-    setIsFavorite((f) => !f);
+  const handleToggleFavorite = () => {
+    toggleFavorite(palette);
   };
 
   return (
@@ -44,7 +46,9 @@ export default function PaletteListRow({ palette }) {
         ))}
       </div>
 
-      <span style={{ color: "#ffffff", fontSize: "14px", fontWeight: 600, flex: 1 }}>
+      <span
+        style={{ color: "#ffffff", fontSize: "14px", fontWeight: 600, flex: 1 }}
+      >
         {palette.name}
       </span>
 
@@ -58,19 +62,29 @@ export default function PaletteListRow({ palette }) {
 
       <div style={{ display: "flex", gap: "10px" }}>
         <button
-          onClick={toggleFavorite}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          onClick={handleToggleFavorite}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
           aria-label="Toggle favorite"
         >
           <Heart
             size={16}
-            color={isFavorite ? "#ef4444" : "#9ca3af"}
-            fill={isFavorite ? "#ef4444" : "none"}
+            color={favorite ? "#ef4444" : "#9ca3af"}
+            fill={favorite ? "#ef4444" : "none"}
           />
         </button>
         <button
           onClick={handleCopy}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
           aria-label="Copy palette"
         >
           <Copy size={16} color="#9ca3af" />

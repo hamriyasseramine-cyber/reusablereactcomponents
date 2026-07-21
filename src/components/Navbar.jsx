@@ -20,7 +20,7 @@ function Navbar() {
             Categories
           </NavLink>
           <NavLink to="/favorites" className="site-header-nav-link">
-            Favorites
+            blabla
           </NavLink>
           <NavLink to="/colorscombos" className="site-header-nav-link">
             Colors Combos

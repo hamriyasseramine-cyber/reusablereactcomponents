@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { Heart, Copy, Check } from "lucide-react";
 import ColorSwatchStrip from "./ColorSwatchStrip.jsx";
+import { useFavorites } from "../favorites/FavoritesContext.jsx";
 
 export default function PaletteCard({
   palette,
@@ -9,16 +9,17 @@ export default function PaletteCard({
   isSelected = false,
   onToggleCompare,
 }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(palette.id);
 
   const handleCopy = (e) => {
     e.stopPropagation();
     navigator.clipboard.writeText(palette.colors.join(", "));
   };
 
-  const toggleFavorite = (e) => {
+  const handleToggleFavorite = (e) => {
     e.stopPropagation();
-    setIsFavorite((f) => !f);
+    toggleFavorite(palette);
   };
 
   const handleCardClick = () => {
@@ -59,7 +60,6 @@ export default function PaletteCard({
           to { opacity: 1; transform: translateY(0); }
         }
 
-        /* swatches "breathe" outward in a staggered wave on card hover */
         .palette-card .swatch-el {
           transition: transform 0.3s ease, filter 0.3s ease;
         }
@@ -153,7 +153,7 @@ export default function PaletteCard({
 
         <div style={{ display: "flex", gap: "10px" }}>
           <button
-            onClick={toggleFavorite}
+            onClick={handleToggleFavorite}
             style={{
               background: "none",
               border: "none",
@@ -164,8 +164,8 @@ export default function PaletteCard({
           >
             <Heart
               size={16}
-              color={isFavorite ? "#ef4444" : "#9ca3af"}
-              fill={isFavorite ? "#ef4444" : "none"}
+              color={favorite ? "#ef4444" : "#9ca3af"}
+              fill={favorite ? "#ef4444" : "none"}
             />
           </button>
           <button
