@@ -21,7 +21,7 @@ export default function ColorHistoryPanel({ history, onClear, onPick }) {
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
         {history.length === 0 ? (
           <p style={{ color: "#4b5563", fontSize: "12px", margin: 0 }}>
-            Colors you pick will show up here.
+            The colors you pick will show up here.
           </p>
         ) : (
           history.map((color, i) => (
