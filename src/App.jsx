@@ -8,6 +8,8 @@ import ColorsCombos from "./pages/colorscombos.jsx";
 import ExploreView from "./components/colorscombos/explore/ExploreView.jsx";
 import ColorPaletteView from "./components/colorscombos/palette/ColorPaletteView.jsx";
 import FavoritesView from "./components/colorscombos/favorites/FavoritesView.jsx";
+import TrendingView from "./components/colorscombos/trending/TrendingView.jsx";
+import TrendingPaletteView from "./components/colorscombos/trending/TrendingPaletteView.jsx";
 import { FavoritesProvider } from "./components/colorscombos/favorites/FavoritesContext.jsx";
 
 function App() {
@@ -30,12 +32,8 @@ function App() {
                 <div style={{ color: "#9ca3af" }}>Combos — coming soon</div>
               }
             />
-            <Route
-              path="trending"
-              element={
-                <div style={{ color: "#9ca3af" }}>Trending — coming soon</div>
-              }
-            />
+            <Route path="trending" element={<TrendingView />} />
+            <Route path="trending/:slug" element={<TrendingPaletteView />} />
             <Route path="favorites" element={<FavoritesView />} />
           </Route>
         </Routes>
