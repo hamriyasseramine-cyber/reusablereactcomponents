@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function ColorSwatchStrip({ colors: allColors }) {
+export default function PaletteBands({ palette }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [copiedIndex, setCopiedIndex] = useState(null);
 
-  const handleSwatchClick = (e, color, i) => {
+  const handleBandClick = (e, color, i) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(color);
@@ -12,7 +12,7 @@ export default function ColorSwatchStrip({ colors: allColors }) {
     setTimeout(() => setCopiedIndex(null), 1000);
   };
 
-  const colors = allColors.slice(0, 5);
+  const colors = palette.colors.slice(0, 5);
   const count = colors.length;
   const hasHover = hoveredIndex !== null && hoveredIndex < count;
   const hoveredWidth = 42; // % taken by the hovered band
@@ -43,7 +43,7 @@ export default function ColorSwatchStrip({ colors: allColors }) {
             key={i}
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={(e) => handleSwatchClick(e, color, i)}
+            onClick={(e) => handleBandClick(e, color, i)}
             style={{
               width: `${width}%`,
               flexGrow: 0,

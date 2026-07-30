@@ -2,6 +2,14 @@ import { Link, NavLink } from "react-router-dom";
 import "../css/Navbar.css";
 import logo from "../assets/logo.png";
 
+const colorsCombosItems = [
+  { path: "explore", label: "Explore" },
+  { path: "palette", label: "Color Palette" },
+  { path: "combos", label: "Combos" },
+  { path: "trending", label: "Trending" },
+  { path: "favorites", label: "Favorites" },
+];
+
 function Navbar() {
   return (
     <nav className="site-header">
@@ -22,9 +30,58 @@ function Navbar() {
           <NavLink to="/favorites" className="site-header-nav-link">
             blabla
           </NavLink>
-          <NavLink to="/colorscombos" className="site-header-nav-link">
-            Colors Combos
-          </NavLink>
+
+          <div
+            className="colors-combos-menu-wrapper"
+            style={{ position: "relative" }}
+          >
+            <NavLink to="/colorscombos" className="site-header-nav-link">
+              Colors Combos
+            </NavLink>
+
+            <div
+              className="colors-combos-dropdown-wrapper"
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                paddingTop: "10px",
+                zIndex: 50,
+              }}
+            >
+              <div
+                className="colors-combos-dropdown"
+                style={{
+                  background: "#141414",
+                  border: "1px solid #2a2a2a",
+                  borderRadius: "8px",
+                  minWidth: "180px",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+                  overflow: "hidden",
+                  fontFamily: "system-ui, sans-serif",
+                }}
+              >
+                {colorsCombosItems.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={`/colorscombos/${item.path}`}
+                    className="colors-combos-dropdown-item"
+                    style={{
+                      display: "block",
+                      padding: "10px 16px",
+                      color: "#e5e7eb",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      textDecoration: "none",
+                    }}
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <NavLink to="/icons" className="site-header-nav-link">
             Icons
           </NavLink>
@@ -64,6 +121,29 @@ function Navbar() {
           </svg>
         </a>
       </div>
+
+      <style>{`
+        .colors-combos-dropdown {
+          opacity: 0;
+          transform-origin: top left;
+          transform: scaleY(0.85) translateY(-8px);
+          transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .colors-combos-dropdown-wrapper {
+          pointer-events: none;
+        }
+        .colors-combos-menu-wrapper:hover .colors-combos-dropdown-wrapper {
+          pointer-events: auto;
+        }
+        .colors-combos-menu-wrapper:hover .colors-combos-dropdown {
+          opacity: 1;
+          transform: scaleY(1) translateY(0);
+        }
+        .colors-combos-dropdown-item:hover {
+          background: #262626;
+        }
+      `}</style>
     </nav>
   );
 }
