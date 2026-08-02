@@ -129,6 +129,16 @@ export default function TrendingView() {
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif" }}>
+      <style>{`
+        @keyframes cardDropIn {
+          from { opacity: 0; transform: translateY(-14px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .card-drop-in {
+          animation: cardDropIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+      `}</style>
+
       <h1
         style={{
           color: "#ffffff",
@@ -147,16 +157,20 @@ export default function TrendingView() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(4, 1fr)",
           gap: "24px",
           marginTop: "24px",
         }}
       >
-        {trendingPalettes.map((palette) => {
+        {trendingPalettes.map((palette, index) => {
           const favorited = isFavorite(palette.slug);
 
           return (
-            <div key={palette.slug}>
+            <div
+              key={palette.slug}
+              className="card-drop-in"
+              style={{ animationDelay: `${index * 60}ms` }}
+            >
               <PaletteBands palette={palette} />
 
               <div

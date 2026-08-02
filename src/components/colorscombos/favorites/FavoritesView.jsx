@@ -5,6 +5,15 @@ export default function FavoritesView() {
 
   return (
     <div style={{ color: "#e5e7eb", fontFamily: "system-ui, sans-serif" }}>
+      <style>{`
+        @keyframes cardDropIn {
+          from { opacity: 0; transform: translateY(-14px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .card-drop-in {
+          animation: cardDropIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+      `}</style>
       <h1
         style={{
           color: "#ffffff",
@@ -28,13 +37,17 @@ export default function FavoritesView() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: "24px",
             marginTop: "24px",
           }}
         >
-          {favoritesList.map((palette) => (
-            <div key={palette.id}>
+          {favoritesList.map((palette, index) => (
+            <div
+              key={palette.id}
+              className="card-drop-in"
+              style={{ animationDelay: `${index * 60}ms` }}
+            >
               <div
                 style={{
                   display: "flex",

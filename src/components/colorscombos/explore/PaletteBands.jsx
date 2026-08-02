@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
-export default function PaletteBands({ palette }) {
+function PaletteBands({ palette }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [copiedIndex, setCopiedIndex] = useState(null);
 
@@ -14,7 +14,7 @@ export default function PaletteBands({ palette }) {
 
   const colors = palette.colors.slice(0, 5);
   const count = colors.length;
-  const hasHover = hoveredIndex !== null && hoveredIndex < count;
+  const hasHover = hoveredIndex !== null && hoveredIndex < count && count > 1;
   const hoveredWidth = 42; // % taken by the hovered band
   const restWidth = hasHover
     ? (100 - hoveredWidth) / (count - 1)
@@ -118,3 +118,5 @@ export default function PaletteBands({ palette }) {
     </div>
   );
 }
+
+export default memo(PaletteBands);

@@ -1,7 +1,10 @@
-export default function HeartButton({ favorited, onToggle, showCount, count }) {
+import { memo } from "react";
+
+function HeartButton({ favorited, onToggle, showCount, count }) {
   return (
     <button
       onClick={onToggle}
+      className={`heart-button${favorited ? " favorited" : ""}`}
       style={{
         display: "flex",
         alignItems: "center",
@@ -13,7 +16,6 @@ export default function HeartButton({ favorited, onToggle, showCount, count }) {
         color: favorited ? "#ef4444" : "#6b7280",
         fontSize: "13px",
       }}
-      className="heart-button"
     >
       <svg
         width="14"
@@ -23,21 +25,13 @@ export default function HeartButton({ favorited, onToggle, showCount, count }) {
         stroke="currentColor"
         strokeWidth="2"
         className="heart-icon"
-        style={{
-          opacity: favorited ? 1 : 0.7,
-          transition: "transform 0.15s ease, opacity 0.15s ease",
-        }}
+        style={{ opacity: favorited ? 1 : 0.7 }}
       >
         <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" />
       </svg>
       {showCount && count}
-
-      <style>{`
-        .heart-button:hover .heart-icon {
-          transform: ${favorited ? "scale(0.85)" : "scale(1.2)"};
-          opacity: ${favorited ? "0.4" : "1"};
-        }
-      `}</style>
     </button>
   );
 }
+
+export default memo(HeartButton);

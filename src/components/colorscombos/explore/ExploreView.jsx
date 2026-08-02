@@ -1,12 +1,32 @@
-import { NavLink } from "react-router-dom";
+import { useCallback } from "react";
+import { VirtuosoGrid } from "react-virtuoso";
 import palettes from "./palettesData.js";
 import { useFavorites } from "../favorites/FavoritesContext.jsx";
-import PaletteBands from "./PaletteBands.jsx";
-import HeartButton from "./HeartButton.jsx";
-import OptionsMenu from "./OptionsMenu.jsx";
+import PaletteCard from "./PaletteCard.jsx";
+import "./effects.css";
+
+// Grid layout classes handed to VirtuosoGrid. Keep in your CSS
+// (e.g. effects.css or a dedicated explore.css):
+//
+// .palette-grid-list {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+//   gap: 24px;
+//   margin-top: 24px;
+// }
+// .palette-grid-item {
+//   /* nothing needed here, grid handles sizing */
+// }
 
 export default function ExploreView() {
   const { isFavorite, toggleFavorite } = useFavorites();
+
+  // Stable across renders: passed down to every card, required for
+  // PaletteCard's memo comparison to actually skip re-renders.
+  const handleToggleFavorite = useCallback(
+    (paletteInfo) => toggleFavorite(paletteInfo),
+    [toggleFavorite]
+  );
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif" }}>
@@ -25,75 +45,24 @@ export default function ExploreView() {
         Browse thousands of color palettes.
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-          gap: "24px",
-          marginTop: "24px",
-        }}
-      >
-        {palettes.map((palette) => {
-          const slug = palette.slug || palette.id;
-          const favorited = isFavorite(palette.id);
-
+      <VirtuosoGrid
+        useWindowScroll
+        totalCount={palettes.length}
+        listClassName="palette-grid-list"
+        itemClassName="palette-grid-item"
+        itemContent={(index) => {
+          const palette = palettes[index];
           return (
-            <div key={palette.id}>
-              <PaletteBands palette={palette} />
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginTop: "10px",
-                }}
-              >
-                <NavLink
-                  to={`/colorscombos/explore/${slug}`}
-                  style={{
-                    color: "#e5e7eb",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    textDecoration: "none",
-                  }}
-                >
-                  {palette.name}
-                </NavLink>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    flexShrink: 0,
-                    marginLeft: "8px",
-                  }}
-                >
-                  <HeartButton
-                    favorited={favorited}
-                    showCount
-                    count={palette.likes || 0}
-                    onToggle={() =>
-                      toggleFavorite({
-                        id: palette.id,
-                        name: palette.name,
-                        colors: palette.colors,
-                        slug,
-                      })
-                    }
-                  />
-
-                  <OptionsMenu />
-                </div>
-              </div>
-            </div>
+            <PaletteCard
+              key={palette.id}
+              palette={palette}
+              favorited={isFavorite(palette.id)}
+              onToggleFavorite={handleToggleFavorite}
+              index={index}
+            />
           );
-        })}
-      </div>
+        }}
+      />
     </div>
   );
 }

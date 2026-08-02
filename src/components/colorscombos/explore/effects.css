@@ -1,0 +1,90 @@
+/* effects.css
+   Import this ONCE at the app root (e.g. in main.jsx / App.jsx):
+     import "./effects.css";
+
+   Previously, HeartButton.jsx and OptionsMenu.jsx each injected their own
+   <style> tag. With 417 palettes on the Explore page, that meant ~834
+   duplicate <style> elements in the DOM (2 per card), each re-parsed by
+   the browser. Consolidating into one global stylesheet removes that
+   entirely.
+*/
+
+/* ---------- Explore palette grid (VirtuosoGrid) ---------- */
+.palette-grid-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Sizing for grid items is handled by .palette-grid-list's
+   grid-template-columns — no item-level rule needed. */
+
+/* ---------- Card entrance animation (drop-in) ---------- */
+@keyframes cardDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-drop-in {
+  animation: cardDropIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- HeartButton ---------- */
+.heart-button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.heart-icon {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* Not favorited: icon pops on hover */
+.heart-button:not(.favorited):hover .heart-icon {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* Favorited: icon shrinks/fades on hover (indicates "click to unfavorite") */
+.heart-button.favorited:hover .heart-icon {
+  transform: scale(0.85);
+  opacity: 0.4;
+}
+
+/* ---------- OptionsMenu ---------- */
+.options-menu-wrapper button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.options-menu-dropdown-wrapper {
+  pointer-events: none;
+}
+
+.options-menu-wrapper:hover .options-menu-dropdown-wrapper {
+  pointer-events: auto;
+}
+
+.options-menu-dropdown {
+  opacity: 0;
+  transform-origin: top right;
+  transform: scaleY(0.85) translateY(-8px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.options-menu-wrapper:hover .options-menu-dropdown {
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
+}
+
+.options-menu-item:hover {
+  background: #262626;
+}
