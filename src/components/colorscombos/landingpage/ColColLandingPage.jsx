@@ -1,10 +1,8 @@
 import { HeroLabel, HeroTitle, HeroDescription } from "./l1/HeroText";
 import FeatureShowcase from "./FeatureShowcase";
-import {
-  PickColorFeature,
-  CopyColorFeature,
-  SaveFavoritesFeature,
-} from "./FeatureItems";
+import TrustedByText from "./l2/TrustedByText";
+import LogoMarquee from "./l2/LogoMarquee";
+import BrandShowcase from "./l3/BrandShowcase";
 
 // --- adjust this to move the feature row up/down ---
 // smaller = closer to the hero, larger = further down, negative = pulls it up (overlapping hero)
@@ -34,31 +32,17 @@ export default function ColColLandingPage() {
             Explore thousands of color palettes, build your own from scratch,
             and save the combinations you love for later.
           </HeroDescription>
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              marginTop: "32px",
-            }}
-          >
-            <div style={{ flex: 1 }}>
-              <PickColorFeature />
-            </div>
-            <div style={{ flex: 1 }}>
-              <CopyColorFeature />
-            </div>
-            <div style={{ flex: 1 }}>
-              <SaveFavoritesFeature />
-            </div>
-          </div>
         </div>
 
         <div style={{ height: "100%", display: "flex" }}>
           <FeatureShowcase />
         </div>
       </div>
+
+      <TrustedByText />
+      <LogoMarquee />
+
+      <BrandShowcase />
     </div>
   );
 }

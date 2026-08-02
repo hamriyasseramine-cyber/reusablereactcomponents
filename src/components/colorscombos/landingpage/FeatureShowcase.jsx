@@ -78,6 +78,12 @@ const LOOP_DISTANCE = BLOCK_HEIGHT + ROW_GAP; // + the connector gap between blo
 const SCROLL_SPEED_PX_PER_SEC = 36; // tune this to change speed, independent of content length
 const DURATION = Math.round(LOOP_DISTANCE / SCROLL_SPEED_PX_PER_SEC);
 
+// fixed visible height of the showcase column (was the bug: "6%" with no
+// sized parent collapses to auto-height, which is the size of the full
+// scrolling content — i.e. thousands of px tall, pushing everything below
+// it way down the page). Tune this to match the hero column's height.
+const SHOWCASE_HEIGHT = 420;
+
 function PaletteBlock() {
   return (
     <div
@@ -112,7 +118,7 @@ export default function FeatureShowcase() {
     <div
       style={{
         width: "100%",
-        height: "6%",
+        height: `${SHOWCASE_HEIGHT}px`,
         overflow: "hidden",
         background: "#000000",
         padding: "10px",
