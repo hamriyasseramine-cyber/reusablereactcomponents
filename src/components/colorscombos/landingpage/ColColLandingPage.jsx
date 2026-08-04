@@ -2,7 +2,8 @@ import { HeroLabel, HeroTitle, HeroDescription } from "./l1/HeroText";
 import FeatureShowcase from "./FeatureShowcase";
 import TrustedByText from "./l2/TrustedByText";
 import LogoMarquee from "./l2/LogoMarquee";
-import BrandShowcase from "./l3/BrandShowcase";
+import BrandLogoGrid from "./l3/BrandLogoGrid";
+import BrandColorsTitle from "./l3/BrandColorsTitle";
 
 // --- adjust this to move the feature row up/down ---
 // smaller = closer to the hero, larger = further down, negative = pulls it up (overlapping hero)
@@ -42,7 +43,17 @@ export default function ColColLandingPage() {
       <TrustedByText />
       <LogoMarquee />
 
-      <BrandShowcase />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          alignItems: "center",
+          gap: "40px",
+        }}
+      >
+        <BrandColorsTitle />
+        <BrandLogoGrid />
+      </div>
     </div>
   );
 }
